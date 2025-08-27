@@ -13,12 +13,15 @@ Singleton {
     property bool sloppySearch: Config.options?.search.sloppy ?? false
     property real scoreThreshold: 0.2
     property var substitutions: ({
+        "": "bytedance-feishu",
+        "com.gitee.gmg137.NeteaseCloudMusicGtk4": "netease-cloud-music-gtk",
         "code-url-handler": "visual-studio-code",
         "Code": "visual-studio-code",
+        "draw.io": "drawio",
         "gnome-tweaks": "org.gnome.tweaks",
         "pavucontrol-qt": "pavucontrol",
-        "wps": "wps-office2019-kprometheus",
-        "wpsoffice": "wps-office2019-kprometheus",
+        "wps": "wps-office2023-kprometheus",
+        "wpsoffice": "wps-office2023-kprometheus",
         "footclient": "foot",
     })
     property var regexSubstitutions: [
@@ -96,6 +99,12 @@ Singleton {
     }
 
     function guessIcon(str) {
+        // Check substitutions first, even for empty strings
+        if (str !== null && str !== undefined) {
+            if (substitutions[str]) return substitutions[str];
+            if (substitutions[str.toLowerCase()]) return substitutions[str.toLowerCase()];
+        }
+        
         if (!str || str.length == 0) return "image-missing";
 
         // Quickshell's desktop entry lookup
