@@ -35,8 +35,8 @@ $zig\
 
 # Replace the "❯" symbol in the prompt with "➜"
 [character] # The name of the module we are configuring is "character"
-success_symbol = "[ ](bold fg:255)"
-error_symbol = "[ ](bold fg:249)"
+success_symbol = "[   ](bold fg:blue)"
+error_symbol = "[   ](bold fg:red)"
 
 # Disable the package module, hiding it from the prompt completely
 [package]
@@ -71,7 +71,7 @@ deleted = " 🗑 "
 
 [hostname]
 ssh_only = false
-format = "[•$hostname](bg:252 bold fg:235)[](bold fg:252)"
+format = "[•$hostname](bg:cyan bold fg:black)[](bold fg:cyan)"
 trim_at = ".companyname.com"
 disabled = false
 
@@ -116,7 +116,7 @@ format = '[](bold fg:255)[󰉋 → $path]($style)[](bold fg:255)'
 
 [cmd_duration]
 min_time = 0
-format = '[](bold fg:252)[󰪢 $duration](bold bg:252 fg:235)[](bold fg:252)'
+format = '[](bold fg:yellow)[󰪢 $duration](bold bg:yellow fg:black)[](bold fg:yellow)'
 
 [c]
 format = " [$symbol($version(-$name))]($style)"
