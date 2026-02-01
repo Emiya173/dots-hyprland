@@ -19,6 +19,17 @@ DockButton {
 
     readonly property bool isSeparator: appToplevel.appId === "SEPARATOR"
     property var desktopEntry: DesktopEntries.heuristicLookup(appToplevel.appId)
+
+    Timer {
+        // Retry looking up the desktop entry if it failed (e.g. database not loaded yet)
+        interval: 500
+        running: !root.isSeparator && root.desktopEntry === null
+        repeat: true
+        onTriggered: {
+            root.desktopEntry = DesktopEntries.heuristicLookup(root.appToplevel.appId);
+        }
+    }
+
     enabled: !isSeparator
     implicitWidth: isSeparator ? 1 : implicitHeight - topInset - bottomInset
 
