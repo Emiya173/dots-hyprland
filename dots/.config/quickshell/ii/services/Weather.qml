@@ -54,7 +54,11 @@ Singleton {
         temp.sunset = data?.astronomy?.sunset || "0.0";
         temp.windDir = data?.current?.winddir16Point || "N";
         temp.wCode = data?.current?.weatherCode || "113";
-        temp.city = data?.location?.areaName[0]?.value || "City";
+        if (!root.gpsActive && root.city && root.city.length > 0) {
+          temp.city = formatCityName(root.city);
+        } else {
+          temp.city = data?.location?.areaName[0]?.value || "City";
+        }
         temp.temp = "";
         temp.tempFeelsLike = "";
         if (root.useUSCS) {
