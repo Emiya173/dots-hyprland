@@ -100,4 +100,8 @@ if status is-interactive
             /bin/su --shell=/usr/bin/fish $argv
         end
     end
+    if test "$TERM" != linux
+        alias ls 'eza --icons'
+    end
+
 end
